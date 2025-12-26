@@ -16,8 +16,11 @@
 ## Status
 
 **Phase 1 (Data):** ✅ Complete
-**Phase 2 (Web App):** ✅ Complete — ready to test locally
-**Phase 3 (Deploy):** ⏳ Next step — deploy to Vercel
+**Phase 2 (Web App):** ✅ Complete
+**Phase 3 (Deploy):** ✅ Live on GitHub Pages
+
+**Live URL:** https://justincgohn.github.io/migration-flow-tool/
+**Repo:** https://github.com/justincgohn/migration-flow-tool
 
 ---
 
@@ -34,7 +37,7 @@ Migration Flow Tool/
 │   │   └── county_list.json      (173 KB)
 │   └── scripts/
 │       └── process_migration_data.py
-└── app/                   ← Web application
+└── docs/                  ← Web application (GitHub Pages serves from here)
     ├── index.html
     ├── styles.css
     ├── app.js
@@ -57,7 +60,7 @@ Migration Flow Tool/
 - **Source:** IRS SOI Migration Data 2021-2022
 - **Households** = tax returns filed
 - **AGI** = Adjusted Gross Income (in dollars, already converted from thousands)
-- **2,730 counties** in dataset
+- **2,793 counties** in dataset
 
 ---
 
