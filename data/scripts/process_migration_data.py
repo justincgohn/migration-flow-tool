@@ -21,8 +21,10 @@ RAW_DIR = BASE_DIR / "raw"
 PROCESSED_DIR = BASE_DIR / "processed"
 
 # Summary row codes to filter out
-# 59 = regional summaries, 96-99 = various aggregates
-SUMMARY_CODES = {57, 58, 59, 96, 97, 98, 99}
+# 96-99 = various aggregates (foreign, same state, etc.)
+# NOTE: 57-59 removed - they are valid county FIPS codes (e.g., Orange County CA = 06_059)
+# Summary rows are already filtered by name pattern ("Other flows", "Total Migration")
+SUMMARY_CODES = {96, 97, 98, 99}
 
 
 def load_fips_lookup():
