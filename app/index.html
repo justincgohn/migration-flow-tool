@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>County Migration Flows — Where Are People Moving?</title>
+    <meta name="description" content="Explore county-to-county migration patterns across the US. See where people are moving and how much income is flowing.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <a href="https://justingohn.com" class="brand" target="_blank" rel="noopener">justingohn.com</a>
+    </header>
+
+    <main>
+        <!-- Search View -->
+        <section id="search-view" class="view active">
+            <h1>Where Are People Moving?</h1>
+            <p class="subtitle">Explore county-to-county migration patterns using IRS tax data</p>
+
+            <div class="search-container">
+                <input
+                    type="text"
+                    id="county-search"
+                    placeholder="Search for a county..."
+                    autocomplete="off"
+                >
+                <div id="search-results" class="search-results"></div>
+            </div>
+
+            <div class="featured">
+                <span>Try:</span>
+                <button class="featured-county" data-fips="42_101">Philadelphia, PA</button>
+                <button class="featured-county" data-fips="06_075">San Francisco, CA</button>
+                <button class="featured-county" data-fips="12_086">Miami-Dade, FL</button>
+                <button class="featured-county" data-fips="48_453">Austin (Travis), TX</button>
+            </div>
+        </section>
+
+        <!-- Results View -->
+        <section id="results-view" class="view">
+            <button id="back-btn" class="back-btn">&larr; Search another county</button>
+
+            <h1 id="county-name"></h1>
+            <p class="data-year">Migration data: 2021-2022 (most recent IRS data available)</p>
+
+            <div class="summary-box">
+                <div class="stat">
+                    <span class="stat-label">Net Migration</span>
+                    <span id="net-migration" class="stat-value"></span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Avg Income Leaving</span>
+                    <span id="agi-leaving" class="stat-value"></span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Avg Income Arriving</span>
+                    <span id="agi-arriving" class="stat-value"></span>
+                </div>
+            </div>
+
+            <div class="flow-tables">
+                <div class="flow-section">
+                    <h2>Where They're Going</h2>
+                    <p class="flow-description">Top destinations for people leaving this county</p>
+                    <table id="outflow-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Destination</th>
+                                <th>Households</th>
+                                <th>Avg Income</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div class="flow-section">
+                    <h2>Where They're Coming From</h2>
+                    <p class="flow-description">Top sources of people moving to this county</p>
+                    <table id="inflow-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Origin</th>
+                                <th>Households</th>
+                                <th>Avg Income</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="limited-data-notice" class="notice" style="display: none;">
+                Limited migration data available for this county. Small flows are suppressed for privacy.
+            </div>
+        </section>
+
+        <!-- Methodology Section -->
+        <section id="methodology" class="methodology">
+            <h3>About This Data</h3>
+            <p>
+                This tool uses <a href="https://www.irs.gov/statistics/soi-tax-stats-migration-data" target="_blank" rel="noopener">IRS Statistics of Income migration data</a>
+                from tax year 2021-2022, which is the most recent data available from the IRS. Migration is tracked by comparing the filing addresses on tax returns from year to year.
+            </p>
+            <ul>
+                <li><strong>Households</strong> = tax returns filed (approximate household count)</li>
+                <li><strong>Avg Income</strong> = average Adjusted Gross Income of migrating households</li>
+                <li><strong>Note:</strong> Connecticut counties are excluded due to data structure differences. Small flows (&lt;10 households) are suppressed for privacy.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Data source: <a href="https://www.irs.gov/statistics/soi-tax-stats-migration-data" target="_blank" rel="noopener">IRS Statistics of Income</a></p>
+        <p><a href="https://justingohn.com" target="_blank" rel="noopener">justingohn.com</a></p>
+    </footer>
+
+    <div id="loading" class="loading">Loading migration data...</div>
+
+    <script src="app.js"></script>
+</body>
+</html>

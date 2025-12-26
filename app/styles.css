@@ -1,0 +1,381 @@
+/* Reset and base */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-text: #1a1a1a;
+    --color-text-muted: #666;
+    --color-bg: #fff;
+    --color-border: #e0e0e0;
+    --color-accent: #2563eb;
+    --color-positive: #16a34a;
+    --color-negative: #dc2626;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    --max-width: 800px;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Header */
+header {
+    padding: 1rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.brand {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+/* Main content */
+main {
+    flex: 1;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+}
+
+/* Views */
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+}
+
+/* Search View */
+#search-view {
+    text-align: center;
+    padding-top: 4rem;
+}
+
+#search-view h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+}
+
+/* Search box */
+.search-container {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto 1.5rem;
+}
+
+#county-search {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    font-size: 1.125rem;
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#county-search:focus {
+    border-color: var(--color-accent);
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    margin-top: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.search-results.active {
+    display: block;
+}
+
+.search-result-item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover,
+.search-result-item.selected {
+    background: #f5f5f5;
+}
+
+/* Featured counties */
+.featured {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.featured span {
+    margin-right: 0.5rem;
+}
+
+.featured-county {
+    background: none;
+    border: 1px solid var(--color-border);
+    padding: 0.4rem 0.75rem;
+    margin: 0.25rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: var(--color-text);
+    transition: all 0.2s;
+}
+
+.featured-county:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+/* Results View */
+#results-view h1 {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: var(--color-accent);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.back-btn:hover {
+    text-decoration: underline;
+}
+
+.data-year {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Summary box */
+.summary-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.stat-value.positive {
+    color: var(--color-positive);
+}
+
+.stat-value.negative {
+    color: var(--color-negative);
+}
+
+/* Flow tables */
+.flow-tables {
+    display: grid;
+    gap: 2rem;
+}
+
+.flow-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.flow-description {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 0.75rem 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+}
+
+th {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
+
+th:first-child {
+    width: 2rem;
+}
+
+td:first-child {
+    color: var(--color-text-muted);
+}
+
+.county-link {
+    cursor: pointer;
+}
+
+.county-link:hover {
+    color: var(--color-accent);
+}
+
+/* Notice */
+.notice {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+
+/* Methodology */
+.methodology {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.methodology h3 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.methodology p,
+.methodology ul {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+.methodology ul {
+    margin-top: 0.75rem;
+    padding-left: 1.5rem;
+}
+
+.methodology li {
+    margin-bottom: 0.5rem;
+}
+
+/* Footer */
+footer {
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+footer p {
+    margin: 0.25rem 0;
+}
+
+/* Loading state */
+.loading {
+    position: fixed;
+    inset: 0;
+    background: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    z-index: 1000;
+}
+
+.loading.hidden {
+    display: none;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+    main {
+        padding: 1rem;
+    }
+
+    #search-view {
+        padding-top: 2rem;
+    }
+
+    #search-view h1 {
+        font-size: 1.75rem;
+    }
+
+    .summary-box {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .stat-value {
+        font-size: 1.25rem;
+    }
+
+    table {
+        font-size: 0.875rem;
+    }
+
+    th, td {
+        padding: 0.5rem 0.25rem;
+    }
+}

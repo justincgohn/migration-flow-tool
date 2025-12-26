@@ -1,0 +1,9 @@
+# Raw data files (too large, download from IRS)
+data/raw/
+
+# OS files
+.DS_Store
+
+# Editor files
+*.swp
+*.swo
