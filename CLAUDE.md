@@ -64,4 +64,24 @@ Migration Flow Tool/
 
 ---
 
+## Change Log
+
+### December 26, 2025 — Bug fix: Missing counties (FIPS 057-059)
+
+**Issue:** User reported Orange County, CA not appearing in search.
+
+**Root cause:** `process_migration_data.py` had `SUMMARY_CODES = {57, 58, 59, 96, 97, 98, 99}` which filtered out any county with FIPS code ending in 057, 058, or 059. These codes are only summary codes at certain aggregation levels, not at the county level.
+
+**Impact:** 63 counties were missing, including:
+- Orange County, CA (06_059) — 3.2M population
+- Nassau County, NY (36_059) — 1.4M population
+- Fairfax County, VA (51_059) — 1.1M population
+- Hillsborough County, FL (12_057) — 1.5M population
+
+**Fix:** Removed 57, 58, 59 from `SUMMARY_CODES`. Summary rows are already filtered by name pattern ("Other flows", "Total Migration") so the FIPS-based filter was redundant.
+
+**Result:** County count increased from 2,730 to 2,793.
+
+---
+
 *Updated: December 26, 2025*
