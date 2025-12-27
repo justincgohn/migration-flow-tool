@@ -20,11 +20,12 @@ BASE_DIR = Path(__file__).parent.parent
 RAW_DIR = BASE_DIR / "raw"
 PROCESSED_DIR = BASE_DIR / "processed"
 
-# Summary row codes to filter out
-# 96-99 = various aggregates (foreign, same state, etc.)
-# NOTE: 57-59 removed - they are valid county FIPS codes (e.g., Orange County CA = 06_059)
-# Summary rows are already filtered by name pattern ("Other flows", "Total Migration")
-SUMMARY_CODES = {96, 97, 98, 99}
+# Summary row STATE codes to filter out
+# 96-99 in STATE FIPS = various aggregates (foreign, same state, etc.)
+# NOTE: Only check STATE codes, not county codes!
+# Counties like Palm Beach FL (12_099), Marion IN (18_097), etc. use 96-99 as valid county FIPS
+# Summary rows are also filtered by name pattern ("Other flows", "Total Migration")
+SUMMARY_STATE_CODES = {96, 97, 98, 99}
 
 
 def load_fips_lookup():
@@ -75,10 +76,8 @@ def process_outflow(fips_lookup):
             dest_state = int(row['y2_statefips'])
             dest_county = int(row['y2_countyfips'])
 
-            # Skip summary rows
-            if dest_state in SUMMARY_CODES or dest_county in SUMMARY_CODES:
-                continue
-            if origin_state in SUMMARY_CODES or origin_county in SUMMARY_CODES:
+            # Skip summary rows (only check STATE codes, not county codes)
+            if dest_state in SUMMARY_STATE_CODES or origin_state in SUMMARY_STATE_CODES:
                 continue
 
             # Skip non-migrant rows (same county)
@@ -144,10 +143,8 @@ def process_inflow(fips_lookup):
             dest_state = int(row['y2_statefips'])
             dest_county = int(row['y2_countyfips'])
 
-            # Skip summary rows
-            if origin_state in SUMMARY_CODES or origin_county in SUMMARY_CODES:
-                continue
-            if dest_state in SUMMARY_CODES or dest_county in SUMMARY_CODES:
+            # Skip summary rows (only check STATE codes, not county codes)
+            if origin_state in SUMMARY_STATE_CODES or dest_state in SUMMARY_STATE_CODES:
                 continue
 
             # Skip non-migrant rows (same county)

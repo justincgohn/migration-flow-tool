@@ -60,11 +60,28 @@ Migration Flow Tool/
 - **Source:** IRS SOI Migration Data 2021-2022
 - **Households** = tax returns filed
 - **AGI** = Adjusted Gross Income (in dollars, already converted from thousands)
-- **2,793 counties** in dataset
+- **2,855 counties** in dataset
 
 ---
 
 ## Change Log
+
+### December 27, 2025 — Bug fix: Missing counties (FIPS 096-099)
+
+**Issue:** LinkedIn user reported Palm Beach County, FL not appearing.
+
+**Root cause:** `SUMMARY_CODES = {96, 97, 98, 99}` was checking both state AND county FIPS codes. These values are only summary codes when used as STATE codes (for aggregates like "Total Migration - US"). When used as COUNTY codes, they're valid counties.
+
+**Impact:** 62 counties were missing, including:
+- Palm Beach County, FL (12_099) — 1.5M population
+- Marion County, IN (18_097) — Indianapolis! 1M+ population
+- Macomb County, MI (26_099) — 870K population
+- Lake County, IL (17_097) — 700K population
+- Sonoma County, CA (06_097) — 500K population
+
+**Fix:** Renamed to `SUMMARY_STATE_CODES` and only check state FIPS, not county FIPS. Summary rows are already filtered by name pattern anyway.
+
+**Result:** County count increased from 2,793 to 2,855.
 
 ### December 26, 2025 — Bug fix: Missing counties (FIPS 057-059)
 
@@ -84,4 +101,4 @@ Migration Flow Tool/
 
 ---
 
-*Updated: December 26, 2025*
+*Updated: December 27, 2025*
