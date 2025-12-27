@@ -20,7 +20,7 @@ A simple web app that lets users explore county-to-county migration patterns usi
    - Minimal design, lots of whitespace
 
 2. **Search interaction**
-   - Autocomplete as user types (2,730 counties)
+   - Autocomplete as user types (2,855 counties)
    - Selecting a county navigates to results page
 
 3. **Results page**
@@ -88,7 +88,7 @@ A simple web app that lets users explore county-to-county migration patterns usi
 |-----------|----------|
 | Frontend | Plain HTML/CSS/JS (no framework) |
 | Data loading | Load full JSON on page load (~5MB) |
-| Hosting | Vercel free tier |
+| Hosting | GitHub Pages |
 | URL routing | Hash-based or simple path routing |
 | Search | Client-side filtering of county list |
 
@@ -140,7 +140,7 @@ app/
 
 ## Success Criteria
 
-- [ ] User can search and find any of the 2,730 counties
+- [x] User can search and find any of the 2,855 counties
 - [ ] Results display correctly with formatted numbers
 - [ ] URLs are shareable and work when accessed directly
 - [ ] Page loads in under 3 seconds on typical connection
